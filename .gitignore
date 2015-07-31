@@ -1,0 +1,30 @@
+# .gitignore
+
+## ------------------------------------
+##  Project build rubbish
+## ------------------------------------
+
+/node_modules
+/deps
+/.tmp
+/*.tgz
+
+
+## ------------------------------------
+##  Normally ignored rubbish
+## ------------------------------------
+
+## temp files
+*~
+*.tmp
+*.swp
+*.swo
+.swp.*
+
+## OS generated files
+__MACOSX
+.DS_Store
+.Spotlight*
+.Trash*
+ehthumbs.db
+Thumbs.db
