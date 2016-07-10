@@ -28,3 +28,6 @@ __MACOSX
 .Trash*
 ehthumbs.db
 Thumbs.db
+
+## ctags
+tags
