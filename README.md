@@ -23,7 +23,7 @@ was forked. For a complete list of changes, just use the commit log.
 It's still under construction. This is the current list of TODOs:
 
 - [ ] Rename `runner` to `bask`
-- [ ] Use `/usr/bin/env bash` everywhere
+- [x] Use `/usr/bin/env bash` everywhere
 - [ ] Add Travis CI for `shellcheck`
 - [ ] Add Travis CI for Standard Readme
 - [ ] Remove dependence on GNU coreutils
@@ -152,7 +152,7 @@ task runner.
 this to the beginning:
 
 ```bash
-#!/bin/bash
+#!/usr/bin/env bash
 cd `dirname ${0}`
 source <path_to>/runner.sh
 ```
@@ -306,7 +306,7 @@ This is a real world script that automates the initial setup of a
 Laravel project.
 
 ```bash
-#!/bin/bash
+#!/usr/bin/env bash
 cd `dirname ${0}`
 source runner.sh
 
