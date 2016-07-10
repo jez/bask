@@ -29,7 +29,7 @@ It's still under construction. This is the current list of TODOs:
 - [ ] Remove dependence on GNU coreutils
   - [ ] Refactor to no longer need `gdate`
   - [ ] Refactor to no longer need `greadlink`
-- [ ] Remove index.sh
+- [x] Remove index.sh
 - [ ] Flesh out README with better usage information
 - [ ] Add Homebrew formula
 - [ ] Investigate Debian package
