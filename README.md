@@ -31,8 +31,10 @@ It's still under construction. This is the current list of TODOs:
   - [x] Refactor to no longer need `greadlink`
 - [x] Remove index.sh
 - [ ] Flesh out README with better usage information
-- [ ] Add Homebrew formula
-- [ ] Investigate Debian package
+- [ ] Add to popular package managers
+  - [ ] Add Homebrew formula
+  - [ ] Investigate adding a Debian package
+  - [ ] Investigate adding an NPM package
 - [ ] Add zsh completions
   - [ ] Submit zsh completions upstream
 
