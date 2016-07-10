@@ -28,7 +28,7 @@ It's still under construction. This is the current list of TODOs:
 - [ ] Add Travis CI for Standard Readme
 - [ ] Remove dependence on GNU coreutils
   - [ ] Refactor to no longer need `gdate`
-  - [ ] Refactor to no longer need `greadlink`
+  - [x] Refactor to no longer need `greadlink`
 - [x] Remove index.sh
 - [ ] Flesh out README with better usage information
 - [ ] Add Homebrew formula

@@ -1,31 +1,19 @@
 #!/usr/bin/env bash
 
-## Expand aliases
-shopt -s expand_aliases
-
-## Mac OS X: fallback on homebrew coreutils
-## Detecting GNU utils http://stackoverflow.com/a/8748344/319952
-if readlink --version > /dev/null 2>&1 ; then
-    alias runner_readlink="readlink"
-else
-    alias runner_readlink="greadlink"
-fi
+# Get paths where source files are located. http://stackoverflow.com/a/42918
+BINDIR="$(dirname "$(perl -MCwd -le 'print Cwd::abs_path(shift)' "${BASH_SOURCE[0]}")")"
+ROOTDIR="$(dirname "$BINDIR")"
+SRCDIR="$ROOTDIR/src"
 
 if [[ "${FUNCNAME[0]}" == source ]]; then
-    echo "Can't source the 'runner' executable."
-    exit 1
+  echo "Can't source the 'runner' executable. Instead, source 'src/runner.sh' directly."
+  exit 1
 fi
 
-## Resolve the absolute path to the source folder
-runner_src_dir="$(dirname "$(runner_readlink -f "${0}")")/../src"
-
-## Resolve resolved path to remove the '../' part
-runner_src_dir="$(runner_readlink -f "${runner_src_dir}")"
-
-## Include core files
+# Include core files
 # shellcheck source=src/runner.sh
-source "${runner_src_dir}/runner.sh"
+source "$SRCDIR/runner.sh"
 
-## Include CLI specific files
+# Include CLI specific files
 # shellcheck source=src/cli.sh
-source "${runner_src_dir}/cli.sh"
+source "$SRCDIR/cli.sh"

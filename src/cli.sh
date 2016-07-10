@@ -3,7 +3,7 @@
 ## NOTE: This script depends on runner.sh to be loaded first.
 
 ## Globals that come from the entry points
-declare -g runner_src_dir
+declare -g SRCDIR
 
 ## Runnerfile names that CLI will be looking for in current directory.
 declare -ga runner_file_default_names=(
@@ -50,7 +50,7 @@ runner_cli_list_tasks() {
 runner_cli_get_completions_code() {
     trap - EXIT
     local shell="${1:-bash}"
-    echo "source ${runner_src_dir}/../completion/runner.${shell}"
+    echo "source $SRCDIR/../completion/runner.${shell}"
     exit 0
 }
 
