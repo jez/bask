@@ -13,52 +13,52 @@ fi
 MILLI_SUFFIX=".$MILLIS"
 
 ## Default task
-declare -g runner_default_task="default"
+declare -g bask_default_task="default"
 
-## Trap EXIT signal to bootstrap the runner.
+## Trap EXIT signal to bootstrap bask.
 ## Works like a charm - your script ends, tasks start to run.
 ## Trap resets after bootstrapping.
-trap '[[ ${?} -eq 0 ]] && runner_bootstrap' EXIT
+trap '[[ ${?} -eq 0 ]] && bask_bootstrap' EXIT
 
 ## Expand aliases
 shopt -s expand_aliases
 
 ## Determine the initial passed arguments to the root script
-declare -ga runner_args=("${@}")
+declare -ga bask_args=("${@}")
 
 ## Split arguments into tasks and flags.
 ## All flags are then passed on to tasks.
 ## E.g. --production
-## NOTE: The actual splitting is done in runner_bootstrap.
-declare -ga runner_flags
-declare -ga runner_tasks
+## NOTE: The actual splitting is done in bask_bootstrap.
+declare -ga bask_flags
+declare -ga bask_tasks
 
 ## Logs a message with a timestamp
-runner_log() {
+bask_log() {
     local timestamp
     timestamp="$(date "+%T$MILLI_SUFFIX")"
-    echo "[${runner_colors[gray]}${timestamp}${runner_colors[reset]}] ${*}"
+    echo "[${bask_colors[gray]}${timestamp}${bask_colors[reset]}] ${*}"
 }
 
 ## Variations of log with colors
-runner_log_error() {
-    runner_log "${runner_colors[red]}${*}${runner_colors[reset]}"
+bask_log_error() {
+    bask_log "${bask_colors[red]}${*}${bask_colors[reset]}"
 }
 
-runner_log_warning() {
-    runner_log "${runner_colors[yellow]}${*}${runner_colors[reset]}"
+bask_log_warning() {
+    bask_log "${bask_colors[yellow]}${*}${bask_colors[reset]}"
 }
 
-runner_log_success() {
-    runner_log "${runner_colors[green]}${*}${runner_colors[reset]}"
+bask_log_success() {
+    bask_log "${bask_colors[green]}${*}${bask_colors[reset]}"
 }
 
-runner_log_notice() {
-    runner_log "${runner_colors[gray]}${*}${runner_colors[reset]}"
+bask_log_notice() {
+    bask_log "${bask_colors[gray]}${*}${bask_colors[reset]}"
 }
 
 ## Returns a human readable duration in ms
-runner_pretty_ms() {
+bask_pretty_ms() {
     local -i ms="${1}"
     local result
     ## If zero or nothing
@@ -92,7 +92,7 @@ runner_pretty_ms() {
     echo "${result}"
 }
 
-declare -gA runner_colors=(
+declare -gA bask_colors=(
     [black]="$(echo -e '\e[30m')"
     [red]="$(echo -e '\e[31m')"
     [green]="$(echo -e '\e[32m')"
@@ -112,85 +112,85 @@ declare -gA runner_colors=(
     [reset]="$(echo -e '\e[0m')"
 )
 
-runner_colorize() {
-    echo "${runner_colors[$1]}${*:2}${runner_colors[reset]}"
+bask_colorize() {
+    echo "${bask_colors[$1]}${*:2}${bask_colors[reset]}"
 }
 
 ## List all defined functions beginning with `task_`
-runner_get_defined_tasks() {
+bask_get_defined_tasks() {
     local IFS=$'\n'
     for task in $(typeset -F); do
         [[ ${task} == 'declare -f task_'* ]] && echo "${task:16}"
     done
 }
 
-## Fancy wrapper for `runner_get_defined_tasks`
-runner_show_defined_tasks() {
-    runner_log "Available tasks:"
-    local -a tasks=($(runner_get_defined_tasks))
+## Fancy wrapper for `bask_get_defined_tasks`
+bask_list_tasks() {
+    bask_log "Available tasks:"
+    local -a tasks=($(bask_get_defined_tasks))
     if [[ ${#tasks[@]} -eq 0 ]]; then
-        runner_log "  ${runner_colors[light_gray]}<none>${runner_colors[reset]}"
+        bask_log "  ${bask_colors[light_gray]}<none>${bask_colors[reset]}"
         return
     fi
     for task in "${tasks[@]}"; do
-        runner_log "  ${runner_colors[cyan]}${task}${runner_colors[reset]}"
+        bask_log "  ${bask_colors[cyan]}${task}${bask_colors[reset]}"
     done
 }
 
 ## Checks if program is accessible from current $PATH
-runner_is_defined() {
+bask_is_defined() {
     hash "${@}" 2>/dev/null
 }
 
-runner_is_task_defined() {
+bask_is_task_defined() {
     for task in "${@}"; do
-        runner_is_defined "task_${task}" || return
+        bask_is_defined "task_${task}" || return
     done
 }
 
-runner_is_task_defined_verbose() {
+bask_is_task_defined_verbose() {
     for task in "${@}"; do
-        if ! runner_is_defined "task_${task}"; then
-            runner_log_error "Task '${task}' is not defined!"
+        if ! bask_is_defined "task_${task}"; then
+            bask_log_error "Task '${task}' is not defined!"
             return 1
         fi
     done
 }
 
-runner_run_task() {
+bask_run_task() {
     local -i time_start time_end
     local time_diff
-    local task_color="${runner_colors[cyan]}${1}${runner_colors[reset]}"
-    runner_log "Starting '${task_color}'..."
+    local task_color="${bask_colors[cyan]}${1}${bask_colors[reset]}"
+    bask_log "Starting '${task_color}'..."
     time_start="$(date +%s$MILLIS)"
-    "task_${1}" "${runner_flags[@]}"
+    "task_${1}" "${bask_flags[@]}"
     local exit_code=${?}
     time_end="$(date +%s$MILLIS)"
-    time_diff="$(runner_pretty_ms $((time_end - time_start)))"
+    time_diff="$(bask_pretty_ms $((time_end - time_start)))"
     if [[ ${exit_code} -ne 0 ]]; then
-        runner_log_error "Task '${1}'" \
+        bask_log_error "Task '${1}'" \
             "failed after ${time_diff} (${exit_code})"
         return ${exit_code}
     fi
-    runner_log "Finished '${task_color}'" \
-        "after ${runner_colors[purple]}${time_diff}${runner_colors[reset]}"
+    bask_log "Finished '${task_color}'" \
+        "after ${bask_colors[purple]}${time_diff}${bask_colors[reset]}"
 }
 
 ## Run tasks sequentially.
-runner_sequence() {
-    runner_is_task_defined_verbose "${@}" || return
+bask_sequence() {
+    bask_is_task_defined_verbose "${@}" || return
     for task in "${@}"; do
-        runner_run_task "${task}" || return
+        bask_run_task "${task}" || return
     done
 }
 
 ## Run tasks in parallel.
-runner_parallel() {
-    runner_is_task_defined_verbose "${@}" || return 1
+bask_parallel() {
+    bask_is_task_defined_verbose "${@}" || return 1
     local -a pid
     local -i exits=0
     for task in "${@}"; do
-        runner_run_task "${task}" & pid+=(${!})
+        bask_run_task "${task}" & pid+=(${!})
     done
     for pid in "${pid[@]}"; do
         wait "${pid}" || exits+=1
@@ -200,32 +200,32 @@ runner_parallel() {
 }
 
 ## Output command before execution
-runner_run() {
-    runner_log_notice "${@}"
+bask_run() {
+    bask_log_notice "${@}"
     "${@}"
 }
 
 ## Starts the initial task.
-runner_bootstrap() {
+bask_bootstrap() {
     ## Clear a trap we set up earlier
     trap - EXIT
     ## Parse arguments
-    for arg in "${runner_args[@]}"; do
+    for arg in "${bask_args[@]}"; do
         if [[ ${arg} == -* ]]; then
-            runner_flags+=("${arg}")
+            bask_flags+=("${arg}")
         else
-            runner_tasks+=("${arg}")
+            bask_tasks+=("${arg}")
         fi
     done
     ## Run tasks
-    if [[ ${#runner_tasks[@]} -gt 0 ]]; then
-        runner_sequence "${runner_tasks[@]}" || exit ${?}
+    if [[ ${#bask_tasks[@]} -gt 0 ]]; then
+        bask_sequence "${bask_tasks[@]}" || exit ${?}
         return 0
     fi
-    if runner_is_task_defined "${runner_default_task}"; then
-        runner_run_task "${runner_default_task}" || exit ${?}
+    if bask_is_task_defined "${bask_default_task}"; then
+        bask_run_task "${bask_default_task}" || exit ${?}
         return 0
     fi
     ## Nothing to run
-    runner_show_defined_tasks
+    bask_list_tasks
 }

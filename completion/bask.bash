@@ -1,4 +1,4 @@
-_runner_completions() {
+_bask_completions() {
     local -a options=('-C' '-f' '-l' '-h' '--directory=' '--file='
         '--list-tasks' '--help')
     local cur="${COMP_WORDS[COMP_CWORD]}"
@@ -40,8 +40,8 @@ _runner_completions() {
         return 0
     fi
     ## NOTE: ${COMP_WORDS[@]:1} provides the context of currently entered
-    ## options, so runner would know what runnerfile to use.
-    tasks="$(runner -l ${COMP_WORDS[@]:1})"
+    ## options, so bask would know what Baskfile to use.
+    tasks="$(bask -l ${COMP_WORDS[@]:1})"
     if [[ ${?} -ne 0 ]]; then
         ## Show nothing at all
         compopt +o default
@@ -52,4 +52,4 @@ _runner_completions() {
     COMPREPLY=($(compgen -W "${tasks}" -- "${cur}"))
 }
 
-complete -o default -F _runner_completions runner
+complete -o default -F _bask_completions bask

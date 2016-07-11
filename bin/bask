@@ -6,13 +6,13 @@ ROOTDIR="$(dirname "$BINDIR")"
 SRCDIR="$ROOTDIR/src"
 
 if [[ "${FUNCNAME[0]}" == source ]]; then
-  echo "Can't source the 'runner' executable. Instead, source 'src/runner.sh' directly."
+  echo "Can't source the 'bask' executable. Instead, source 'src/bask.sh' directly."
   exit 1
 fi
 
 # Include core files
-# shellcheck source=src/runner.sh
-source "$SRCDIR/runner.sh"
+# shellcheck source=src/bask.sh
+source "$SRCDIR/bask.sh"
 
 # Include CLI specific files
 # shellcheck source=src/cli.sh
