@@ -132,7 +132,21 @@ Then skip to [Usage](#usage) to learn more.
 
 ### NPM
 
-*Coming soon!*
+If you don't mind the additional dependency on the NPM ecosystem, you can
+install Bask with NPM:
+
+```shell
+# --- Local to Project --- #
+npm install --save bask
+
+# to enable CLI:
+export PATH="PATH:./node_modules/.bin"
+
+# --- Global --- #
+npm install -g bask
+```
+
+Then skip to [Usage](#usage) to learn more.
 
 ### Git + PATH
 

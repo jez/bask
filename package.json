@@ -1,0 +1,26 @@
+{
+  "name": "bask",
+  "version": "0.9.0",
+  "description": "A task runner for bash",
+  "directories": {
+    "test": "test"
+  },
+  "bin": {
+    "bask": "bin/bask"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jez/bask.git"
+  },
+  "keywords": [
+    "bash",
+    "task",
+    "runner",
+    "bask"
+  ],
+  "license": "LGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/jez/bask/issues"
+  },
+  "homepage": "https://github.com/jez/bask#readme"
+}
