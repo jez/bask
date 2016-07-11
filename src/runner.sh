@@ -35,7 +35,8 @@ declare -ga runner_tasks
 
 ## Logs a message with a timestamp
 runner_log() {
-    local timestamp="$(date "+%T$MILLI_SUFFIX")"
+    local timestamp
+    timestamp="$(date "+%T$MILLI_SUFFIX")"
     echo "[${runner_colors[gray]}${timestamp}${runner_colors[reset]}] ${*}"
 }
 
@@ -157,13 +158,15 @@ runner_is_task_defined_verbose() {
 }
 
 runner_run_task() {
+    local -i time_start time_end
+    local time_diff
     local task_color="${runner_colors[cyan]}${1}${runner_colors[reset]}"
     runner_log "Starting '${task_color}'..."
-    local -i time_start="$(date +%s$MILLIS)"
+    time_start="$(date +%s$MILLIS)"
     "task_${1}" "${runner_flags[@]}"
     local exit_code=${?}
-    local -i time_end="$(date +%s$MILLIS)"
-    local time_diff="$(runner_pretty_ms $((time_end - time_start)))"
+    time_end="$(date +%s$MILLIS)"
+    time_diff="$(runner_pretty_ms $((time_end - time_start)))"
     if [[ ${exit_code} -ne 0 ]]; then
         runner_log_error "Task '${1}'" \
             "failed after ${time_diff} (${exit_code})"

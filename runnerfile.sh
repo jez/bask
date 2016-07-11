@@ -21,7 +21,7 @@ get_shell_files() {
 }
 
 get_files_and_check() {
-  get_shell_files | xargs shellcheck --exclude=SC2155
+  get_shell_files | xargs shellcheck
 }
 
 task_default() {
