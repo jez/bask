@@ -42,7 +42,7 @@ bask_cli_help() {
 ## Outputs a list of tasks
 bask_cli_list_tasks() {
     trap - EXIT
-    bask_get_defined_tasks
+    _bask_get_defined_tasks
     exit 0
 }
 
