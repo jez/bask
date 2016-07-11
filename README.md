@@ -128,7 +128,13 @@ Then skip to [Usage](#usage) to learn more.
 
 ### Homebrew
 
-*Coming soon!*
+On OS X, installing Bask globally is simple if you have Homebrew:
+
+```shell
+brew install jez/formulae/bask
+```
+
+Then skip to [Usage](#usage) to learn more.
 
 ### NPM
 
