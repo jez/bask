@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 
-## Mac OS X: fallback on coreutils
-## Detecting GNU utils http://stackoverflow.com/a/8748344/319952
+## Only use milliseconds if available, by detecting GNU coreutils
+## See: http://stackoverflow.com/a/8748344/319952
 if date --version > /dev/null 2>&1 ; then
-    alias runner_date='date'
+    MILLIS="%3N"
 else
-    alias runner_date='gdate'
+    # Approximate the milliseconds with zeros
+    MILLIS="000"
 fi
+
+# Suffix for logging purposes
+MILLI_SUFFIX=".$MILLIS"
 
 ## Default task
 declare -g runner_default_task="default"
@@ -31,7 +35,7 @@ declare -ga runner_tasks
 
 ## Logs a message with a timestamp
 runner_log() {
-    local timestamp="$(runner_date +%T.%3N)"
+    local timestamp="$(date "+%T$MILLI_SUFFIX")"
     echo "[${runner_colors[gray]}${timestamp}${runner_colors[reset]}] ${*}"
 }
 
@@ -51,9 +55,6 @@ runner_log_success() {
 runner_log_notice() {
     runner_log "${runner_colors[gray]}${*}${runner_colors[reset]}"
 }
-
-## Returns unix time in ms
-alias runner_time="runner_date +%s%3N"
 
 ## Returns a human readable duration in ms
 runner_pretty_ms() {
@@ -158,10 +159,10 @@ runner_is_task_defined_verbose() {
 runner_run_task() {
     local task_color="${runner_colors[cyan]}${1}${runner_colors[reset]}"
     runner_log "Starting '${task_color}'..."
-    local -i time_start="$(runner_time)"
+    local -i time_start="$(date +%s$MILLIS)"
     "task_${1}" "${runner_flags[@]}"
     local exit_code=${?}
-    local -i time_end="$(runner_time)"
+    local -i time_end="$(date +%s$MILLIS)"
     local time_diff="$(runner_pretty_ms $((time_end - time_start)))"
     if [[ ${exit_code} -ne 0 ]]; then
         runner_log_error "Task '${1}'" \

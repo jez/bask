@@ -26,8 +26,8 @@ It's still under construction. This is the current list of TODOs:
 - [x] Use `/usr/bin/env bash` everywhere
 - [ ] Add Travis CI for `shellcheck`
 - [ ] Add Travis CI for Standard Readme
-- [ ] Remove dependence on GNU coreutils
-  - [ ] Refactor to no longer need `gdate`
+- [x] Remove dependence on GNU coreutils
+  - [x] Refactor to no longer need `gdate`
   - [x] Refactor to no longer need `greadlink`
 - [x] Remove index.sh
 - [ ] Flesh out README with better usage information
