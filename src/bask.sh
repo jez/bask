@@ -191,6 +191,7 @@ bask_sequence() {
         _bask_run_task "${task}" || return
     done
 }
+alias bask_depends=bask_sequence
 
 ## Run tasks in parallel.
 bask_parallel() {
@@ -206,6 +207,7 @@ bask_parallel() {
     [[ ${exits} -eq 0 ]] && return 0
     [[ ${exits} -lt ${#} ]] && return 41 || return 42
 }
+alias bask_fork_join=bask_parallel
 
 ## Output command before execution
 bask_run() {
