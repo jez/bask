@@ -141,7 +141,7 @@ if [[ -z ${bask_file} ]]; then
 fi
 
 ## Source the Baskfile
-# shellcheck source=/dev/null
+# shellcheck disable=SC1090
 source "${bask_file}"
 
 if [ -n "${bask_list_tasks}" ]; then

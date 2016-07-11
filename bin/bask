@@ -11,9 +11,9 @@ if [[ "${FUNCNAME[0]}" == source ]]; then
 fi
 
 # Include core files
-# shellcheck source=src/bask.sh
+# shellcheck disable=SC1090
 source "$SRCDIR/bask.sh"
 
 # Include CLI specific files
-# shellcheck source=src/cli.sh
+# shellcheck disable=SC1090
 source "$SRCDIR/cli.sh"
