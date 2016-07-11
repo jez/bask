@@ -92,6 +92,9 @@ compatible with your system.
 | NPM                  | :white_check_mark: | :white_check_mark: |
 | Git + PATH           | :no_entry_sign:    | :white_check_mark: |
 
+### Dependencies
+
+Currently Bask requires Bash 4.2+.
 
 ### Simple (vendored)
 
