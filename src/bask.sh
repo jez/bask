@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# shellcheck disable=SC2034
+VERSION="0.9.0"
+
 ## Only use milliseconds if available, by detecting GNU coreutils
 ## See: http://stackoverflow.com/a/8748344/319952
 if date --version > /dev/null 2>&1 ; then

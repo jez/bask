@@ -4,6 +4,7 @@
 
 ## Globals that come from the entry points
 declare -g SRCDIR
+declare -g VERSION
 
 ## Baskfile names that CLI will be looking for in current directory.
 declare -ga baskfile_default_names=(
@@ -29,6 +30,7 @@ bask_cli_error() {
 bask_cli_help() {
     trap - EXIT
     echo "Usage: ${0} [options] [task] [task_options] ..."
+    echo "Version: $VERSION"
     echo "Options:"
     echo "  -C <dir>, --directory=<dir>  Change to <dir> before doing anything."
     echo "  --completion=<shell>         Output code to activate task completions."
