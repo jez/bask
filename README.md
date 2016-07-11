@@ -15,25 +15,6 @@ if targets are out of date in Make.
 If you're writing a Makefile with all `.PHONY` targets, chances are that Bask is
 really what you want.
 
-It's still under construction. This is the current list of TODOs:
-
-- [x] Rename `runner` to `bask`
-- [x] Use `/usr/bin/env bash` everywhere
-- [x] Add Travis CI for `shellcheck`
-- [ ] Add Travis CI for Standard Readme
-- [x] Remove dependence on GNU coreutils
-  - [x] Refactor to no longer need `gdate`
-  - [x] Refactor to no longer need `greadlink`
-- [x] Remove index.sh
-- [x] Flesh out README with better usage information
-- [ ] Add to popular package managers
-  - [ ] Add version/updating information to `src/bask.sh`
-  - [ ] Add Homebrew formula
-  - [ ] Investigate adding a Debian package
-  - [ ] Investigate adding an NPM package
-- [ ] Add zsh completions
-  - [ ] Submit zsh completions upstream
-
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ## Table of Contents
