@@ -1,0 +1,15 @@
+language: bash
+
+notifications:
+  email: false
+
+# From the shellcheck Wiki on Travis
+addons:
+  apt:
+    sources:
+      - debian-sid
+    packages:
+      - shellcheck
+
+script:
+  - ./bin/bask
