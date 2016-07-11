@@ -1,5 +1,6 @@
 # Bask
 
+[![Travis](https://img.shields.io/travis/jez/bask.svg?maxAge=2592000)](https://travis-ci.org/jez/bask)
 [![Gitter](https://img.shields.io/gitter/room/jez/bask.svg?maxAge=2592000)][gitter]
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-brightgreen.svg)](https://github.com/RichardLitt/standard-readme)
 [![tl;drLegal LGPL 3.0](https://img.shields.io/badge/tl%3BdrLegal-LGPL_3.0-blue.svg)](https://tldrlegal.com/license/gnu-lesser-general-public-license-v3-(lgpl-3))
@@ -18,7 +19,7 @@ It's still under construction. This is the current list of TODOs:
 
 - [x] Rename `runner` to `bask`
 - [x] Use `/usr/bin/env bash` everywhere
-- [ ] Add Travis CI for `shellcheck`
+- [x] Add Travis CI for `shellcheck`
 - [ ] Add Travis CI for Standard Readme
 - [x] Remove dependence on GNU coreutils
   - [x] Refactor to no longer need `gdate`
