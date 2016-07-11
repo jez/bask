@@ -7,7 +7,7 @@
 
 > :sunglasses: Bask in the convenience of a task runner for bash
 
-Bask is a task runner for Bask. It's like Make with a bunch of shell targets,
+Bask is a task runner for Bash. It's like Make with a bunch of shell targets,
 but without the `.PHONY`'s everywhere, and nicer because there's no more Make
 syntax. The main difference is that tasks are always run in Bask, but only run
 if targets are out of date in Make.
@@ -51,7 +51,7 @@ really what you want.
 Bask was initially forked from [bash-task-runner]. It was forked for a couple
 reasons:
 
-- I needed a to vendor it for an unrelated project.
+- I needed to vendor it for an unrelated project.
 - I wanted to drop the dependency on GNU coreutils.
 - I wanted to improve the name :smirk:
 
