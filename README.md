@@ -1,6 +1,7 @@
 # Bask
 
 [![Travis](https://img.shields.io/travis/jez/bask.svg?maxAge=2592000)](https://travis-ci.org/jez/bask)
+[![npm](https://img.shields.io/npm/v/bask.svg?maxAge=2592000)](https://www.npmjs.com/package/bask)
 [![Gitter](https://img.shields.io/gitter/room/jez/bask.svg?maxAge=2592000)][gitter]
 [![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-brightgreen.svg)](https://github.com/RichardLitt/standard-readme)
 [![tl;drLegal LGPL 3.0](https://img.shields.io/badge/tl%3BdrLegal-LGPL_3.0-blue.svg)](https://tldrlegal.com/license/gnu-lesser-general-public-license-v3-(lgpl-3))
@@ -81,7 +82,7 @@ Each of the below installation methods is differentiated along two properties:
 
 You may want to combine multiple installation methods in order to satisfy both
 of these requirements. In particular, we recommend [**Simple
-(vendored)**](#simple-vendored) with method that gives you a CLI and is
+(vendored)**](#simple-vendored) with a method that gives you a CLI and is
 compatible with your system.
 
 |                      | Local to Project   | CLI-enabled        |
