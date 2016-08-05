@@ -66,10 +66,6 @@ was forked. For a complete list of changes, just use the commit log.
 
 ## Install
 
-> Right now there are no installation methods through package managers. Shortly
-> there will be installation through Homebrew (and potentially a Debian
-> package).
-
 Each of the below installation methods is differentiated along two properties:
 
 - **Local to project**
