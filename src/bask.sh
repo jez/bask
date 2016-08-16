@@ -76,9 +76,14 @@ bask_log_success() {
     bask_log "${_bask_colors[green]}${*}${_bask_colors[reset]}"
 }
 
-bask_log_notice() {
+bask_log_info() {
+    bask_log "${_bask_colors[cyan]}${*}${_bask_colors[reset]}"
+}
+
+bask_log_debug() {
     bask_log "${_bask_colors[gray]}${*}${_bask_colors[reset]}"
 }
+alias bask_log_notice=bask_log_debug
 
 # Helper colorization function. Usage:
 #

@@ -385,7 +385,8 @@ helpers:
 | `bask_log_success` | Same as above, but in green                          |
 | `bask_log_error`   | Same as above, but in red                            |
 | `bask_log_warning` | Same as above, but in yellow                         |
-| `bask_log_notice`  | Same as above, but in gray                           |
+| `bask_log_info`    | Same as above, but in cyan                           |
+| `bask_log_debug`   | Same as above, but in gray                           |
 
 Usage: `bask_log message`
 
