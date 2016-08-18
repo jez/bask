@@ -406,7 +406,6 @@ Where `colorname` is one of
 | black     | gray        | light_gray   | white      |              |            |
 | red       | green       | yellow       | blue       | purple       | cyan       |
 | light_red | light_green | light_yellow | light_blue | light_purple | light_cyan |
-| reset     |             |              |            |              |            |
 
 ```shell
 # Simple example
@@ -415,6 +414,9 @@ bask_colorize purple This will all be purple
 # Use with `bask_log` to get a timestamp:
 bask_log "$(bask_colorize purple This will all be purple)"
 ```
+
+Note that your message will be wrapped with the appropriate color **and** reset
+codes. You don't need to worry about manually turning the color back to normal.
 
 #### `bask_list_tasks`
 
