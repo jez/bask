@@ -232,7 +232,7 @@ _bask_bootstrap() {
         if [[ ${arg} == -* ]]; then
             bask_flags+=("${arg}")
         else
-            bask_tasks+=("${arg}")
+            bask_tasks+=("${arg//-/_}")
         fi
     done
     ## Run tasks
