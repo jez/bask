@@ -196,7 +196,7 @@ _bask_run_task() {
 bask_sequence() {
     bask_is_task_defined_verbose "${@}" || return
     for task in "${@}"; do
-        _bask_run_task "${task}" || return
+        _bask_run_task "${task}" || return 1
     done
 }
 alias bask_depends=bask_sequence
